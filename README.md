@@ -1,46 +1,39 @@
-# Getting Started with Create React App
+# Medium clone client app
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a demo application written based on the APIs defined as part of [RealWorld demo app](https://realworld-docs.netlify.app/). This is a client side app written with
+    1. React (Typescript) : for client side rendering
+    2. React bootstrap: CSS for UI components
+    3. React-redux: for state management
+    4. react-router: routing
 
-## Available Scripts
+## How to start the app?
+1. Clone the repository with
+    ```sh
+    git clone https://github.com/sushrut111/react-redux-typescript-demo-realworld.git
+    ```
+2. Navigate to the cloned directory
+    ```sh
+    cd react-redux-typescript-demo-realworld
+    ```
+3. Install dependencies
+    ```sh
+    npm install
+    ```
+4. Start the application
+    ```sh
+    npm run start
+    ```
 
-In the project directory, you can run:
+## Backend API
+The app uses production endpoint deployed by the original authors of realworld demo app which is live at: https://api.realworld.io/api
+You can deploy your own endpoint (refer the docs: https://realworld-docs.netlify.app/) and point the application towards the newer one by editing variable `API_ROOT` in the file [src/constants/api.ts](https://github.com/sushrut111/react-redux-typescript-demo-realworld/blob/master/src/constants/api.ts)
 
-### `npm start`
+## Login for test
+This app currently does not support new user registration. You can register new user as following with curl
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+```bash
+curl 'https://api.realworld.io/api/users' \
+  -H 'content-type: application/json;charset=UTF-8' \
+  -H 'sec-fetch-mode: cors' \
+  --data-raw '{"user":{"username":"test","email":"test@example","password":"test123"}}' \
+```

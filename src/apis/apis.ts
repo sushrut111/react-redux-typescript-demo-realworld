@@ -1,7 +1,6 @@
 import Post from '../types/Post';
 import axios, { AxiosRequestConfig } from 'axios';
-
-const API_ROOT = 'https://api.realworld.io/api';
+import { API_ROOT } from '../constants/api';
 
 let token : any = null;
 const tokenPlugin = (cnf: AxiosRequestConfig) => {
