@@ -1,5 +1,5 @@
 import React from "react";
-import { LOGIN, LOGOUT, UPDATE_LOGIN_FIELD } from "../constants/actionTypes";
+import { LOGIN, LOGOUT, REQUEST_LOGIN, REQUEST_LOGOUT, UPDATE_LOGIN_FIELD } from "../constants/actionTypes";
 import { connect } from "react-redux";
 import { Auth } from '../apis/apis';
 import { Button, InputGroup, FormControl, Container, Row, Col } from "react-bootstrap";
@@ -15,8 +15,8 @@ const mapDispatchToProps = (dispatch: any) => {
     return {
         onEmailChange:(e: any) => dispatch({type: UPDATE_LOGIN_FIELD, key: 'email', value: e.target.value}),
         onPasswordChange: (e: any) => dispatch({type: UPDATE_LOGIN_FIELD, key: 'password', value: e.target.value}),
-        onSubmit: (email: string, password: string) => dispatch({type: LOGIN, payload: Auth.login(email, password)}),
-        onLogout: () => dispatch({type: LOGOUT})
+        onSubmit: (email: string, password: string) => dispatch({type: REQUEST_LOGIN, payload: {email, password}}),
+        onLogout: () => dispatch({type: REQUEST_LOGOUT})
     }
 }
 

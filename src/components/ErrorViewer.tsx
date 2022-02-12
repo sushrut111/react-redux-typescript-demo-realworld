@@ -27,7 +27,7 @@ class ErrorContainer extends React.Component<any, any> {
         return <ToastContainer className="p-3" position={'bottom-end'}>
         <Toast show={this.shouldShowError()} delay={3000} autohide onClose={this.props.hideError}>
           <Toast.Header>
-            <strong className="me-auto">Error occurred</strong>
+            <strong className="me-auto">{this.props.notification?.type === "success"?"Successful operation":"Error occurred!"}</strong>
           </Toast.Header>
           <Toast.Body>{this.getErrorBody(this.props.notification?.message)}</Toast.Body>
         </Toast>

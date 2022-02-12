@@ -1,9 +1,10 @@
 import React from "react";
 import { Button, Container, Form, FormControl, FormGroup, FormLabel } from "react-bootstrap";
 import { connect } from "react-redux";
-import { POST_CREATE_REQUEST_SENT, UPDATE_EDITOR_FIELD } from "../constants/actionTypes";
+import { CREATE_ARTICLE, EDITOR_OPENED, POST_CREATE_REQUEST_SENT, UPDATE_EDITOR_FIELD } from "../constants/actionTypes";
 import Post from "../types/Post";
 import { Articles } from "../apis/apis";
+import Status from "../types/status";
 const mapDispatchToProps = (dispatch: any) => ({
     updateField: (fieldname: string) => (e: any) => {
         if(fieldname === "tags"){
@@ -13,7 +14,8 @@ const mapDispatchToProps = (dispatch: any) => ({
             dispatch({type: UPDATE_EDITOR_FIELD, key: fieldname, value: e.target.value})
         }
     },
-    createPost: (payload: Promise<any>) => dispatch({type: POST_CREATE_REQUEST_SENT, payload})
+    createPost: (payload: Post) => dispatch({type: CREATE_ARTICLE, payload}),
+    editorOpened: () => dispatch({type: EDITOR_OPENED})
 })
 
 const mapStateToProps = (state: any) => ({
@@ -25,6 +27,16 @@ class Editor extends React.Component<any, any> {
         return tags?.join(',');
     }
 
+    componentDidMount(){
+        this.props.editorOpened();
+    }
+
+    componentDidUpdate(prevProps: any) {
+        if(prevProps.status === Status.IN_PROGRESS && this.props.status === Status.COMPLETED){
+            window.location.href = "/";
+        }
+    }
+
     submitPost = () => {
         let post: Post = {
             title: this.props.title,
@@ -33,7 +45,7 @@ class Editor extends React.Component<any, any> {
             tagList: this.props.tags
         }
 
-        this.props.createPost(Articles.create(post));
+        this.props.createPost(post);
 
     }
 

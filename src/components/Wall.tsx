@@ -2,13 +2,13 @@ import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { connect } from "react-redux";
 import { Articles } from "../apis/apis";
-import { WALL_LOADED } from "../constants/actionTypes";
+import { REQUEST_ARTICLES, WALL_LOADED } from "../constants/actionTypes";
 import ArticlePreview from "./ArticlePreview";
 import TagsViewer from "./TagsViewer";
 
 const mapDispatchToProps = (dispatch: any) => {
     return {
-        pageLoaded: () => dispatch({type: WALL_LOADED, payload: Articles.all(0)})
+        pageLoaded: () => dispatch({type: REQUEST_ARTICLES, payload: {page: 0}})
     }
 }
 

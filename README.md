@@ -1,4 +1,4 @@
-# Medium clone client app
+# Medium clone client app (REACT-REDUX-SAGA-TS)
 
 This is a demo application written based on the APIs defined as part of [RealWorld demo app](https://realworld-docs.netlify.app/). This is a client side app written with
     
@@ -9,6 +9,8 @@ This is a demo application written based on the APIs defined as part of [RealWor
     3. React-redux: for state management
     
     4. react-router: for routing
+
+    5. redux-saga: side effect management (async requests)
 
 ## How to start the app?
 1. Clone the repository with

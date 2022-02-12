@@ -1,4 +1,15 @@
 export const LOGIN: string = "LOGIN";
+export const REQUEST_LOGIN: string = "REQUEST_LOGIN";
+export const REQUEST_USER: string = "REQUEST_USER";
+export const REQUEST_LOGOUT: string = "REQUEST_LOGOUT";
+export const REQUEST_TAGS: string = "REQUEST_TAGS";
+export const REQUEST_ARTICLES: string = "REQUEST_ARTICLES";
+export const ARTICLES_FETCHED: string = "ARTICLES_FETCHED";
+export const TAGS_FETCHED: string = "TAGS_FETCHED";
+export const CREATE_ARTICLE: string = "CREATE_ARTICLE";
+export const ARTICLE_CREATED: string = "ARTICLE_CREATED";
+export const ARTICLE_CREATION_STARTED: string = "ARTICLE_CREATION_STARTED";
+export const EDITOR_OPENED: string = "EDITOR_OPENED";
 export const LOGOUT: string = "LOGOUT";
 export const UPDATE_LOGIN_FIELD: string = "UPDATE_LOGIN_FIELD";
 export const WALL_LOADED: string = "WALL_LOADED";

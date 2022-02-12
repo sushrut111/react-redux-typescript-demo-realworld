@@ -5,7 +5,7 @@ import Header from "./Header";
 import Wall from "./Wall";
 import Editor from "./Editor";
 import { setToken, Auth } from "../apis/apis";
-import { APP_LOADED } from "../constants/actionTypes";
+import { APP_LOADED, REQUEST_USER } from "../constants/actionTypes";
 import { connect } from "react-redux";
 import ErrorViewer from "./ErrorViewer";
 
@@ -16,7 +16,7 @@ const mapStateToProps = (state: any) => {
 }
 const mapDispatchToProps = (dispatch: any) => {
     return {
-        onLoad: () => dispatch({type: APP_LOADED, payload: Auth.current()})
+        onLoad: () => dispatch({type: REQUEST_USER})
     }
 }
 class App extends React.Component<any, any>{
