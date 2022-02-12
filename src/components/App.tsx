@@ -35,7 +35,8 @@ class App extends React.Component<any, any>{
         return <>
             <Header/>
             <Switch>
-                <Route path="/login" component={Login}></Route>
+                <Route path="/auth" component={Login}></Route>
+                <Route path="/auth/logout" component={Login}></Route>
                 <Route path="/create" component={Editor}></Route>
                 <Route path="/" component={Wall}></Route>
             </Switch>

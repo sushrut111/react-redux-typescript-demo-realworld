@@ -1,5 +1,5 @@
 import React from "react";
-import { LOGIN, UPDATE_LOGIN_FIELD } from "../constants/actionTypes";
+import { LOGIN, LOGOUT, UPDATE_LOGIN_FIELD } from "../constants/actionTypes";
 import { connect } from "react-redux";
 import { Auth } from '../apis/apis';
 import { Button, InputGroup, FormControl, Container, Row, Col } from "react-bootstrap";
@@ -15,7 +15,8 @@ const mapDispatchToProps = (dispatch: any) => {
     return {
         onEmailChange:(e: any) => dispatch({type: UPDATE_LOGIN_FIELD, key: 'email', value: e.target.value}),
         onPasswordChange: (e: any) => dispatch({type: UPDATE_LOGIN_FIELD, key: 'password', value: e.target.value}),
-        onSubmit: (email: string, password: string) => dispatch({type: LOGIN, payload: Auth.login(email, password)}) 
+        onSubmit: (email: string, password: string) => dispatch({type: LOGIN, payload: Auth.login(email, password)}),
+        onLogout: () => dispatch({type: LOGOUT})
     }
 }
 
@@ -23,7 +24,16 @@ class Login extends React.Component<any, any>{
     
     constructor(props: any){
         super(props);
-        console.log(props);
+        
+        if(props.location.pathname === "/auth/logout"){
+            this.props.onLogout();
+        }
+    }
+    
+    componentDidUpdate(prevProps: any){
+        if(prevProps.username !== this.props.username){
+            window.location.href = "/";
+        }
     }
 
     submitLogin = () => {

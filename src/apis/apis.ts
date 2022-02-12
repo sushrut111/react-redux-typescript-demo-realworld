@@ -14,7 +14,7 @@ const tokenPlugin = (cnf: AxiosRequestConfig) => {
   return cnf;
 }
 
-export const setToken = (_token: string) => {
+export const setToken = (_token: string | null) => {
   token = _token;
 }
 

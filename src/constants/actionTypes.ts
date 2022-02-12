@@ -1,4 +1,5 @@
 export const LOGIN: string = "LOGIN";
+export const LOGOUT: string = "LOGOUT";
 export const UPDATE_LOGIN_FIELD: string = "UPDATE_LOGIN_FIELD";
 export const WALL_LOADED: string = "WALL_LOADED";
 export const APP_LOADED: string = "APP_LOADED";

@@ -16,8 +16,8 @@ class Header extends React.Component<any, any>{
           <Navbar.Collapse className="justify-content-end">
           
             {this.props.user?<><Nav.Link href="/create">Create Post</Nav.Link><Navbar.Text>
-              Signed in as: <a href="/login">{this.props.user}</a>
-            </Navbar.Text></>:<a href="login">Login/SignUp</a>}
+              Signed in as: {this.props.user} <a href="/auth/logout"> Logout</a>
+            </Navbar.Text></>:<a href="/auth">Login/SignUp</a>}
           </Navbar.Collapse>
         </Container>
       </Navbar>
