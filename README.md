@@ -1,10 +1,14 @@
 # Medium clone client app
 
 This is a demo application written based on the APIs defined as part of [RealWorld demo app](https://realworld-docs.netlify.app/). This is a client side app written with
+    
     1. React (Typescript) : for client side rendering
+    
     2. React bootstrap: CSS for UI components
+    
     3. React-redux: for state management
-    4. react-router: routing
+    
+    4. react-router: for routing
 
 ## How to start the app?
 1. Clone the repository with
