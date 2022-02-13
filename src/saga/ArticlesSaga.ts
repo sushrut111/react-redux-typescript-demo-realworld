@@ -8,7 +8,7 @@ function* GetTags(action: any): Generator<any> {
         const resp: any = yield call(Tags.get);
         yield put({type: TAGS_FETCHED, payload: resp.data});
     } catch(e: any) {
-        yield put(NetworkCalledFailedAction(e.response.data))
+        // yield put(NetworkCalledFailedAction(e.response.data))
     }
 }
 
@@ -17,7 +17,7 @@ function* GetArticles(action: any): Generator<any> {
         const resp: any = yield call(Articles.all, action.payload.page);
         yield put({type: ARTICLES_FETCHED, payload: resp.data});
     } catch(e: any) {
-        yield put(NetworkCalledFailedAction(e.response.data))
+        // yield put(NetworkCalledFailedAction(e.response.data))
     }
 }
 

@@ -1,6 +1,7 @@
 import Post from '../types/Post';
 import axios, { AxiosRequestConfig } from 'axios';
 import { API_ROOT } from '../constants/api';
+import Registration from '../types/Registration';
 
 let token : any = null;
 const tokenPlugin = (cnf: AxiosRequestConfig) => {
@@ -37,10 +38,9 @@ const requests = {
 }
 
 export const Auth = {
-  current: () =>
-    requests.get('/user'),
-  login: (email: string, password: string) =>
-    requests.post('/users/login', { user: { email, password } }),
+  current: () => requests.get('/user'),
+  login: (email: string, password: string) => requests.post('/users/login', { user: { email, password } }),
+  register: (user: Registration) => requests.post('/users', {user}),
 };
 
 const limit = (count: number, p: number) => `limit=${count}&offset=${p ? p * count : 0}`;

@@ -4,6 +4,7 @@ import Login from './Login';
 import Header from "./Header";
 import Wall from "./Wall";
 import Editor from "./Editor";
+import Register from "./Register";
 import { setToken, Auth } from "../apis/apis";
 import { APP_LOADED, REQUEST_USER } from "../constants/actionTypes";
 import { connect } from "react-redux";
@@ -35,8 +36,9 @@ class App extends React.Component<any, any>{
         return <>
             <Header/>
             <Switch>
-                <Route path="/auth" component={Login}></Route>
                 <Route path="/auth/logout" component={Login}></Route>
+                <Route path="/auth/register" component={Register}></Route>
+                <Route path="/auth" component={Login}></Route>
                 <Route path="/create" component={Editor}></Route>
                 <Route path="/" component={Wall}></Route>
             </Switch>

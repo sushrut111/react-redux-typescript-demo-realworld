@@ -1,4 +1,4 @@
-import { NETWORK_CALL_ERRORED, SUCCESS_NOTIFICATION } from "../constants/actionTypes"
+import { ERROR_NOTIFICATION, NETWORK_CALL_ERRORED, SUCCESS_NOTIFICATION } from "../constants/actionTypes"
 
 export const NetworkCalledFailedAction = (message: string) => {
     return {
@@ -10,6 +10,13 @@ export const NetworkCalledFailedAction = (message: string) => {
 export const SuccessnNotification = (message: string) => {
     return {
         type: SUCCESS_NOTIFICATION,
+        message
+    }
+}
+
+export const ErrorNotification = (message: string) => {
+    return {
+        type: ERROR_NOTIFICATION,
         message
     }
 }

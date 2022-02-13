@@ -35,11 +35,4 @@ The app uses production endpoint deployed by the original authors of realworld d
 You can deploy your own endpoint (refer the docs: https://realworld-docs.netlify.app/) and point the application towards the newer one by editing variable `API_ROOT` in the file [src/constants/api.ts](https://github.com/sushrut111/react-redux-typescript-demo-realworld/blob/master/src/constants/api.ts)
 
 ## Login for test
-This app currently does not support new user registration. You can register new user as following with curl
-
-```bash
-curl 'https://api.realworld.io/api/users' \
-  -H 'content-type: application/json;charset=UTF-8' \
-  -H 'sec-fetch-mode: cors' \
-  --data-raw '{"user":{"username":"test","email":"test@example","password":"test123"}}' \
-```
+After the app starts, you can register a new user to get login credentials to test.
