@@ -1,3 +1,4 @@
+import { push } from "connected-react-router";
 import { call, put, takeLatest } from "redux-saga/effects";
 import { NetworkCalledFailedAction, SuccessnNotification } from "../actions/common";
 import { Articles, Tags } from "../apis/apis";
@@ -27,6 +28,7 @@ function* CreateArticle(action: any): Generator<any> {
         const resp: any = yield call(Articles.create, action.payload);
         yield put(SuccessnNotification("Article created successfully!"));
         yield put({type: ARTICLE_CREATED})
+        yield put(push('/'))
     } catch(e: any) {
         yield put(NetworkCalledFailedAction(e.response.data));
     }

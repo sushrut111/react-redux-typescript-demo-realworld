@@ -4,15 +4,19 @@ import './index.css';
 import App from './components/App';
 import reportWebVitals from './reportWebVitals';
 import {Provider} from 'react-redux';
-import store from './store';
-import { BrowserRouter } from 'react-router-dom';
+import configureStore from './store';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { ConnectedRouter } from 'connected-react-router';
+import SingletonHistory from './history';
+const store = configureStore();
+
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <BrowserRouter>
+      <ConnectedRouter history={SingletonHistory.getHistoryObject()}>
       <App />
-      </BrowserRouter>
+      </ConnectedRouter>
+
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')

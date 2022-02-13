@@ -29,12 +29,6 @@ class Login extends React.Component<any, any>{
             this.props.onLogout();
         }
     }
-    
-    componentDidUpdate(prevProps: any){
-        if(prevProps.username !== this.props.username){
-            window.location.href = "/";
-        }
-    }
 
     submitLogin = () => {
         this.props.onSubmit(this.props.email, this.props.password);

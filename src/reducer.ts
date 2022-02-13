@@ -5,11 +5,15 @@ import Tags from './reducers/TagsReducer';
 import Editor from './reducers/EditorReducer';
 import Register from './reducers/RegisterReducer';
 import {combineReducers} from 'redux';
-export default combineReducers({
-    Login,
-    Common,
-    Wall,
-    Tags,
-    Editor,
-    Register
-});
+import { connectRouter } from 'connected-react-router';
+export default (history: any) => {
+    return combineReducers({
+        Login,
+        Common,
+        Wall,
+        Tags,
+        Editor,
+        Register,
+        router: connectRouter(history)
+    });
+}

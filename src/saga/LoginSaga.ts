@@ -1,3 +1,4 @@
+import { push } from "connected-react-router";
 import { call, put, takeLatest } from "redux-saga/effects";
 import { NetworkCalledFailedAction, SuccessnNotification } from "../actions/common";
 import { Auth, setToken } from "../apis/apis";
@@ -18,6 +19,8 @@ function* LoggedIn(action: any): Generator<any> {
         setToken(action.payload.user.token)
         yield put({type: LOGIN, payload: action.payload});
         yield put(SuccessnNotification("Logged in!"))
+        yield put({type: REQUEST_USER});
+        yield put(push('/'))
 }
 
 function* GetUser(action: any): Generator<any> {
@@ -33,6 +36,7 @@ function* Logout(action: any): Generator<any> {
     setToken(null);
     window.localStorage.removeItem(LOCAL_STORAGE_TOKEN_KEY);
     yield put(SuccessnNotification("Logged out!"));
+    yield put(push('/'))
 }
 
 function* Register(action: any): Generator<any> {

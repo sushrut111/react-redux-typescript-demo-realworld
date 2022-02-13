@@ -7,7 +7,6 @@ import {
 } from "../constants/actionTypes";
 
 export default (state: any = {}, action: any) => {
-    console.log(action);
   switch (action.type) {
     case APP_LOADED:
       return {
