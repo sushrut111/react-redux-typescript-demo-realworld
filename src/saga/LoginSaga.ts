@@ -3,7 +3,7 @@ import { call, put, takeLatest } from "redux-saga/effects";
 import { NetworkCalledFailedAction, SuccessnNotification } from "../actions/common";
 import { Auth, setToken } from "../apis/apis";
 import { LOCAL_STORAGE_TOKEN_KEY } from "../constants";
-import { APP_LOADED, LOGIN, NETWORK_CALL_ERRORED, REGISTRATION_COMPLETED, REGISTRATION_FAILED, REGISTRATION_STARTED, REQUEST_LOGIN, REQUEST_LOGOUT, REQUEST_REGISTRATION, REQUEST_USER, SET_LOGGED_IN_STATE, SUCCESS_NOTIFICATION } from "../constants/actionTypes";
+import { APP_LOADED, LOGIN, REGISTRATION_COMPLETED, REGISTRATION_FAILED, REGISTRATION_STARTED, REQUEST_LOGIN, REQUEST_LOGOUT, REQUEST_REGISTRATION, REQUEST_USER, SET_LOGGED_IN_STATE, AUTH_TOKEN_EXPIRED } from "../constants/actionTypes";
 
 function* Login(action: any): Generator<any> {
     try {
@@ -28,8 +28,16 @@ function* GetUser(action: any): Generator<any> {
         const resp: any = yield call(Auth.current);
         yield put({type: APP_LOADED, payload: resp.data});
     } catch (e: any) {
-        // yield put({type: NETWORK_CALL_ERRORED, message: e.response.data})
+        if(e.response.status === 401 && window.localStorage.getItem(LOCAL_STORAGE_TOKEN_KEY)) {
+            window.localStorage.removeItem(LOCAL_STORAGE_TOKEN_KEY);
+            setToken(null);
+            yield put({type: AUTH_TOKEN_EXPIRED})
+        } else yield put(NetworkCalledFailedAction(e.response.data))
     }   
+}
+
+function* RefreshLogin(action: any): Generator<any> {
+    yield put(NetworkCalledFailedAction("Login expired, please login again!"));
 }
 
 function* Logout(action: any): Generator<any> {
@@ -58,5 +66,6 @@ export function* LoginSaga() {
     yield takeLatest(REQUEST_LOGOUT, Logout);
     yield takeLatest(REQUEST_REGISTRATION, Register);
     yield takeLatest(SET_LOGGED_IN_STATE, LoggedIn);
+    yield takeLatest(AUTH_TOKEN_EXPIRED, RefreshLogin);
 }
 
