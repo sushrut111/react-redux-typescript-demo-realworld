@@ -3,6 +3,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import { connect } from "react-redux";
 import { Articles } from "../apis/apis";
 import { REQUEST_ARTICLES, WALL_LOADED } from "../constants/actionTypes";
+import Post from "../types/Post";
 import ArticlePreview from "./ArticlePreview";
 import TagsViewer from "./TagsViewer";
 
@@ -19,7 +20,19 @@ const mapStateToProps = (state: any) => {
   };
 };
 
-class Wall extends React.Component<any, any> {
+interface IStateProps {
+  articles: Post[]
+}
+
+interface IDispatchProps {
+  pageLoaded : () => void
+}
+
+const connector = connect<IStateProps, IDispatchProps>(mapStateToProps, mapDispatchToProps);
+
+type IProps = IStateProps & IDispatchProps;
+
+class Wall extends React.Component<IProps, any> {
   componentDidMount() {
     this.props.pageLoaded();
   }
@@ -53,4 +66,4 @@ class Wall extends React.Component<any, any> {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Wall);
+export default connector(Wall);

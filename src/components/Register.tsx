@@ -10,11 +10,10 @@ import {
 import { connect } from "react-redux";
 import { ErrorNotification } from "../actions/common";
 import {
-  ERROR_NOTIFICATION,
   REQUEST_REGISTRATION,
   UPDATE_REGISTER_FIELD,
 } from "../constants/actionTypes";
-import Registration from "../types/Registration";
+import Registration, { RegistrationForm } from "../types/Registration";
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
@@ -32,7 +31,17 @@ const mapDispatchToProps = (dispatch: any) => {
 
 const mapStateToProps = (state: any) => ({ ...state.Register });
 
-class Register extends React.Component<any, any> {
+interface IDispatchProps {
+  onFieldChange: (field: string) => (e: React.SyntheticEvent<EventTarget>) => void;
+  raiseError: (message: string) => void;
+  registerUser: (user: Registration) => void;
+}
+
+const connector = connect<RegistrationForm, IDispatchProps>(mapStateToProps, mapDispatchToProps);
+
+type IProps = RegistrationForm & IDispatchProps;
+
+class Register extends React.Component<IProps, any> {
   constructor(props: any) {
     super(props);
     console.log(props);
@@ -112,4 +121,4 @@ class Register extends React.Component<any, any> {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Register);
+export default connector(Register);

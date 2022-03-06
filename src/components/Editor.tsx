@@ -38,7 +38,25 @@ const mapStateToProps = (state: any) => ({
   ...state.Editor,
 });
 
-class Editor extends React.Component<any, any> {
+interface IStateProps {
+  title: string;
+  description: string;
+  body: string;
+  tags: string[];
+  status: Status
+}
+
+interface IDispatchProps {
+  updateField: (fieldname: string) => (e: React.SyntheticEvent<EventTarget>) => void;
+  createPost: (payload: Post) => void;
+  editorOpened: () => void;
+}
+
+const connector = connect<IStateProps, IDispatchProps>(mapStateToProps, mapDispatchToProps);
+
+type IProps = IStateProps & IDispatchProps;
+
+class Editor extends React.Component<IProps, any> {
   getParsedTags = (tags: Array<string>) => {
     return tags?.join(",");
   };
@@ -110,4 +128,4 @@ class Editor extends React.Component<any, any> {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Editor);
+export default connector(Editor);

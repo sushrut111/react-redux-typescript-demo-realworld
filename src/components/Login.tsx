@@ -44,7 +44,26 @@ const mapDispatchToProps = (dispatch: any) => {
   };
 };
 
-class Login extends React.Component<any, any> {
+interface IStateProps {
+  email: string;
+  password: string;
+}
+
+interface IDispatchProps {
+  onEmailChange: (e: React.SyntheticEvent<EventTarget>) => void;
+  onPasswordChange: (e: React.SyntheticEvent<EventTarget>) => void;
+  onSubmit: (email: string, password: string) => void;
+  onLogout: () => void;
+}
+
+const connector = connect<IStateProps, IDispatchProps>(
+  mapStateToProps,
+  mapDispatchToProps
+);
+
+type IProps = IStateProps & IDispatchProps;
+
+class Login extends React.Component<IProps, any> {
   constructor(props: any) {
     super(props);
 
@@ -59,6 +78,13 @@ class Login extends React.Component<any, any> {
   render = (): React.ReactNode => {
     return (
       <Container>
+        <Row>
+          <Col md={{ span: 4, offset: 4 }}>
+            <Button variant="success" href="auth/register">
+              Do not have accout? Register
+            </Button>
+          </Col>
+        </Row>
         <Row>
           <Col md={{ span: 4, offset: 4 }}>
             <FormControl
@@ -90,4 +116,4 @@ class Login extends React.Component<any, any> {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default connector(Login);

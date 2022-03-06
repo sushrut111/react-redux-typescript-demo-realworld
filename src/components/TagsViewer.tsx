@@ -1,14 +1,26 @@
 import React from "react";
 import { Badge, Container } from "react-bootstrap";
 import { connect } from "react-redux";
-import { Tags } from "../apis/apis";
 import { REQUEST_TAGS, TAGS_SIDEBAR_LOADED } from "../constants/actionTypes";
 
 const mapStateToProps = (state: any) => ({ ...state.Tags });
 const mapDispatchToProps = (dispatch: any) => ({
   onLoad: () => dispatch({ type: REQUEST_TAGS }),
 });
-class TagsViewer extends React.Component<any, any> {
+
+interface IStateProps {
+  tags: string[]
+}
+
+interface IDispatchProps {
+  onLoad: () => void
+}
+
+const connector = connect<IStateProps, IDispatchProps>(mapStateToProps, mapDispatchToProps);
+
+type IProps = IStateProps & IDispatchProps;
+
+class TagsViewer extends React.Component<IProps, any> {
   constructor(props: any) {
     super(props);
     this.props.onLoad();
@@ -27,4 +39,4 @@ class TagsViewer extends React.Component<any, any> {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(TagsViewer);
+export default connector(TagsViewer);

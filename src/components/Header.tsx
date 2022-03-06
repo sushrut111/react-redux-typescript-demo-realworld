@@ -8,7 +8,13 @@ const mapStateToProps = (state: any) => {
   };
 };
 
-class Header extends React.Component<any, any> {
+interface IProps {
+  user: string
+}
+
+const connector = connect<IProps>(mapStateToProps);
+
+class Header extends React.Component<IProps, any> {
   render(): React.ReactNode {
     return (
       <Navbar>
@@ -33,4 +39,4 @@ class Header extends React.Component<any, any> {
   }
 }
 
-export default connect(mapStateToProps, null)(Header);
+export default connector(Header);

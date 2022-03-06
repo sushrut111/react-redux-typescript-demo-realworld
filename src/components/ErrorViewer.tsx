@@ -14,7 +14,20 @@ const mapDispatchToProps = (dispatch: any) => {
   };
 };
 
-class ErrorContainer extends React.Component<any, any> {
+interface IStateProps {
+  notification: { message: string, type: string },
+  hideError: boolean
+}
+
+interface IDispatchProps {
+  hideError : () => void
+}
+
+const connector = connect<IStateProps, IDispatchProps>(mapStateToProps, mapDispatchToProps);
+
+type IProps = IStateProps & IDispatchProps;
+
+class ErrorContainer extends React.Component<IProps, any> {
   getErrorBody(errors: any) {
     return JSON.stringify(errors);
   }
@@ -47,4 +60,4 @@ class ErrorContainer extends React.Component<any, any> {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ErrorContainer);
+export default connector(ErrorContainer);

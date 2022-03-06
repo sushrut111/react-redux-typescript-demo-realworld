@@ -5,8 +5,8 @@ import Header from "./Header";
 import Wall from "./Wall";
 import Editor from "./Editor";
 import Register from "./Register";
-import { setToken, Auth } from "../apis/apis";
-import { APP_LOADED, REQUEST_USER } from "../constants/actionTypes";
+import { setToken } from "../apis/apis";
+import { REQUEST_USER } from "../constants/actionTypes";
 import { connect } from "react-redux";
 import ErrorViewer from "./ErrorViewer";
 
@@ -20,7 +20,18 @@ const mapDispatchToProps = (dispatch: any) => {
     onLoad: () => dispatch({ type: REQUEST_USER }),
   };
 };
-class App extends React.Component<any, any> {
+
+interface IStateProps {}
+
+interface IDispatchProps {
+  onLoad: () => void;
+}
+
+const connector = connect<IStateProps, IDispatchProps>(mapStateToProps, mapDispatchToProps);
+
+type IProps = IStateProps & IDispatchProps;
+
+class App extends React.Component<IProps, any> {
   constructor(props: any) {
     super(props);
     let token = window.localStorage.getItem("jwt");
@@ -47,4 +58,4 @@ class App extends React.Component<any, any> {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connector(App);

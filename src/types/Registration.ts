@@ -3,3 +3,5 @@ export default interface Registration {
   username: string;
   password: string;
 }
+
+export type RegistrationForm = Registration & { repassword : string};
