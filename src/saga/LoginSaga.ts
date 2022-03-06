@@ -50,7 +50,7 @@ function* GetUser(action: any): Generator<any> {
     const resp: any = yield call(Auth.current);
     yield put({ type: APP_LOADED, payload: resp.data });
   } catch (e: any) {
-    if (e.response.status == 401) {
+    if (e.response.status === 401) {
       if (window.localStorage.getItem(LOCAL_STORAGE_TOKEN_KEY)) {
         window.localStorage.removeItem(LOCAL_STORAGE_TOKEN_KEY);
         setToken(null);

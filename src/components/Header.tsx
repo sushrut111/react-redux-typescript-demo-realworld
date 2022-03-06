@@ -1,5 +1,5 @@
 import React from "react";
-import { Navbar, Container, Button, Nav } from "react-bootstrap";
+import { Navbar, Container, Nav } from "react-bootstrap";
 import { connect } from "react-redux";
 
 const mapStateToProps = (state: any) => {

@@ -1,7 +1,7 @@
 import React from "react";
 import { Badge, Container } from "react-bootstrap";
 import { connect } from "react-redux";
-import { REQUEST_TAGS, TAGS_SIDEBAR_LOADED } from "../constants/actionTypes";
+import { REQUEST_TAGS } from "../constants/actionTypes";
 
 const mapStateToProps = (state: any) => ({ ...state.Tags });
 const mapDispatchToProps = (dispatch: any) => ({

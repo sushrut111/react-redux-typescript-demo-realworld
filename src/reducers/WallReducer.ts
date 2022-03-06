@@ -1,4 +1,4 @@
-import { ARTICLES_FETCHED, WALL_LOADED } from "../constants/actionTypes";
+import { ARTICLES_FETCHED } from "../constants/actionTypes";
 export default (state: any = {}, action: any) => {
   switch (action.type) {
     case ARTICLES_FETCHED:

@@ -2,20 +2,15 @@ import React from "react";
 import {
   Button,
   Container,
-  Form,
-  FormControl,
-  FormGroup,
-  FormLabel,
+  Form
 } from "react-bootstrap";
 import { connect } from "react-redux";
 import {
   CREATE_ARTICLE,
   EDITOR_OPENED,
-  POST_CREATE_REQUEST_SENT,
   UPDATE_EDITOR_FIELD,
 } from "../constants/actionTypes";
 import Post from "../types/Post";
-import { Articles } from "../apis/apis";
 import Status from "../types/status";
 const mapDispatchToProps = (dispatch: any) => ({
   updateField: (fieldname: string) => (e: any) => {

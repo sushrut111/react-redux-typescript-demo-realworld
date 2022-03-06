@@ -46,8 +46,6 @@ export const Auth = {
 
 const limit = (count: number, p: number) =>
   `limit=${count}&offset=${p ? p * count : 0}`;
-const omitSlug = (article: any) =>
-  Object.assign({}, article, { slug: undefined });
 export const Articles = {
   all: (page: number) => requests.get(`/articles?${limit(10, page)}`),
   create: (article: Post) => requests.post("/articles", { article }),

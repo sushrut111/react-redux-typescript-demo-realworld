@@ -5,7 +5,7 @@ import RootSaga from "./saga";
 import SingletonHistory from "./history";
 import { routerMiddleware } from "connected-react-router";
 
-export default () => {
+const configureStore = () => {
   const sagaMiddleware = createSagaMiddleware();
   const history = SingletonHistory.getHistoryObject();
   let store = createStore(
@@ -15,3 +15,5 @@ export default () => {
   sagaMiddleware.run(RootSaga);
   return store;
 };
+
+export default configureStore;

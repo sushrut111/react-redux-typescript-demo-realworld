@@ -1,4 +1,4 @@
-import { TAGS_FETCHED, TAGS_SIDEBAR_LOADED } from "../constants/actionTypes";
+import { TAGS_FETCHED } from "../constants/actionTypes";
 
 export default (state: any = {}, action: any) => {
   switch (action.type) {

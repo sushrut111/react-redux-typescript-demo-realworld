@@ -36,7 +36,7 @@ function* GetArticles(action: any): Generator<any> {
 function* CreateArticle(action: any): Generator<any> {
   try {
     yield put({ type: ARTICLE_CREATION_STARTED });
-    const resp: any = yield call(Articles.create, action.payload);
+    yield call(Articles.create, action.payload);
     yield put(SuccessnNotification("Article created successfully!"));
     yield put({ type: ARTICLE_CREATED });
     yield put(push("/"));

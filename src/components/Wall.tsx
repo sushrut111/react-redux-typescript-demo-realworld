@@ -1,8 +1,7 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { connect } from "react-redux";
-import { Articles } from "../apis/apis";
-import { REQUEST_ARTICLES, WALL_LOADED } from "../constants/actionTypes";
+import { REQUEST_ARTICLES } from "../constants/actionTypes";
 import Post from "../types/Post";
 import ArticlePreview from "./ArticlePreview";
 import TagsViewer from "./TagsViewer";

@@ -1,16 +1,12 @@
 import React from "react";
 import {
-  LOGIN,
-  LOGOUT,
   REQUEST_LOGIN,
   REQUEST_LOGOUT,
   UPDATE_LOGIN_FIELD,
 } from "../constants/actionTypes";
 import { connect } from "react-redux";
-import { Auth } from "../apis/apis";
 import {
   Button,
-  InputGroup,
   FormControl,
   Container,
   Row,
