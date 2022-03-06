@@ -77,7 +77,7 @@ class Login extends React.Component<IProps, any> {
         <Row>
           <Col md={{ span: 4, offset: 4 }}>
             <Button variant="success" href="auth/register">
-              Do not have accout? Register
+              Do not have account? Register
             </Button>
           </Col>
         </Row>

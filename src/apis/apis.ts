@@ -1,56 +1,22 @@
-import Post from "../types/Post";
-import axios, { AxiosRequestConfig } from "axios";
 import { API_ROOT } from "../constants/api";
-import Registration from "../types/Registration";
+import ConfigContainer from "./ConfigContainer";
+import ApiClientBase from "./ApiClientBase";
+import ArticlesClient from "./ArticlesClient";
+import AuthClient from "./AuthClient";
+import IArticlesClient from "./IArticlesClient";
+import IAuthClient from "./IAuthClient";
+import ITagsClient from "./ITagsClient";
+import TagsClient from "./TagsClient";
 
-let token: any = null;
-const tokenPlugin = (cnf: AxiosRequestConfig) => {
-  if (token) {
-    cnf.headers = {
-      ...cnf.headers,
-      Authorization: `Token ${token}`,
-    };
-  }
-  return cnf;
-};
 
 export const setToken = (_token: string | null) => {
-  token = _token;
+  ConfigContainer.jwtToken = _token;
 };
 
-const getHeaders = (): AxiosRequestConfig => {
-  return {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  };
-};
+const apiClientBase = new ApiClientBase(API_ROOT);
 
-const instance = axios.create({
-  baseURL: API_ROOT,
-});
+export const Auth: IAuthClient = new AuthClient(apiClientBase);
 
-instance.interceptors.request.use(tokenPlugin);
+export const Articles: IArticlesClient = new ArticlesClient(apiClientBase)
 
-const requests = {
-  get: (url: any) => instance.get(url, getHeaders()),
-  post: (url: any, data: any) => instance.post(url, data, getHeaders()),
-};
-
-export const Auth = {
-  current: () => requests.get("/user"),
-  login: (email: string, password: string) =>
-    requests.post("/users/login", { user: { email, password } }),
-  register: (user: Registration) => requests.post("/users", { user }),
-};
-
-const limit = (count: number, p: number) =>
-  `limit=${count}&offset=${p ? p * count : 0}`;
-export const Articles = {
-  all: (page: number) => requests.get(`/articles?${limit(10, page)}`),
-  create: (article: Post) => requests.post("/articles", { article }),
-};
-
-export const Tags = {
-  get: () => requests.get("/tags"),
-};
+export const Tags: ITagsClient = new TagsClient(apiClientBase);
