@@ -7,45 +7,50 @@ import ArticlePreview from "./ArticlePreview";
 import TagsViewer from "./TagsViewer";
 
 const mapDispatchToProps = (dispatch: any) => {
-    return {
-        pageLoaded: () => dispatch({type: REQUEST_ARTICLES, payload: {page: 0}})
-    }
-}
+  return {
+    pageLoaded: () =>
+      dispatch({ type: REQUEST_ARTICLES, payload: { page: 0 } }),
+  };
+};
 
 const mapStateToProps = (state: any) => {
-    return {
-        ...state.Wall
-    }
-}
+  return {
+    ...state.Wall,
+  };
+};
 
-class Wall extends React.Component<any, any>{
-    componentDidMount(){
-        this.props.pageLoaded();
-    }
-    render(): React.ReactNode {
-        return <Container fluid>
-            <Row>
-                <Col>
-                {
-                this.props.articles?.map((el: any, ind: number) => {
-                    return <div key={ind}><ArticlePreview
-                        title={el.title}
-                        tagList={el.tagList}
-                        description={el.description}
-                        author={el.author.username}
-                        createdAt={el.createdAt}
-                        key={ind}
-                    /><br/></div>
-                })
-            }
-                </Col>
-                <Col md={3}>
-                    <TagsViewer/>
-                </Col>
-            </Row>
-        </Container>
-    }
+class Wall extends React.Component<any, any> {
+  componentDidMount() {
+    this.props.pageLoaded();
+  }
+  render(): React.ReactNode {
+    return (
+      <Container fluid>
+        <Row>
+          <Col>
+            {this.props.articles?.map((el: any, ind: number) => {
+              return (
+                <div key={ind}>
+                  <ArticlePreview
+                    title={el.title}
+                    tagList={el.tagList}
+                    description={el.description}
+                    author={el.author.username}
+                    createdAt={el.createdAt}
+                    key={ind}
+                  />
+                  <br />
+                </div>
+              );
+            })}
+          </Col>
+          <Col md={3}>
+            <TagsViewer />
+          </Col>
+        </Row>
+      </Container>
+    );
+  }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Wall);
-

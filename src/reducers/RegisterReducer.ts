@@ -4,7 +4,7 @@ import {
   REGISTRATION_OPENED,
   REGISTRATION_STARTED,
   UPDATE_REGISTER_FIELD,
-  REGISTRATION_FAILED
+  REGISTRATION_FAILED,
 } from "../constants/actionTypes";
 import Status from "../types/status";
 
@@ -31,10 +31,10 @@ export default (state = {}, action: any) => {
         status: Status.IN_PROGRESS,
       };
     case REGISTRATION_FAILED:
-        return {
-            ...state,
-            status: Status.FAILED
-        }
+      return {
+        ...state,
+        status: Status.FAILED,
+      };
     default:
       return state;
   }
